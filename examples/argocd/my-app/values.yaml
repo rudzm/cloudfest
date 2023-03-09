@@ -1,6 +1,10 @@
+global:
+  namespace: default
+  projectId: exampleProjectId
+
 master-app:
   service-account:
-    name: my-app
+    name: my-app-sa
 
 
 service-account:
