@@ -3,7 +3,7 @@ global:
   projectId: exampleProjectId
 
 master-app:
-  service-account:
+  serviceAccount:
     name: my-app-sa
 
 
