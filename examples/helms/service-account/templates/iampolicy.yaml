@@ -6,12 +6,12 @@ spec:
   resourceRef:
     apiVersion: iam.cnrm.cloud.google.com/v1beta1
     kind: IAMServiceAccount
-    name: {{ .Values.serviceAccount.name }}
+    name: {{ .Values.name }}
   bindings:
     - role: roles/iam.workloadIdentityUser
       members:
         - serviceAccount:{{ .Values.global.projectId }}.svc.id.goog[{{ .Values.global.namespace }}/{{ .Values.global.projectId }}]
-    {{- range $.Values.serviceAccount.roles }}
+    {{- range $.Values.roles }}
     - role: {{ . }}
       members:
         - serviceAccount:{{ $.Values.global.projectId }}.svc.id.goog[{{ $.Values.global.namespace }}/{{ $.Values.global.projectId }}]

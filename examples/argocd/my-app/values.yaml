@@ -1,0 +1,9 @@
+master-app:
+  service-account:
+    name: my-app
+
+
+service-account:
+  name: my-app
+  roles:
+    - roles/storage.admin
