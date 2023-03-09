@@ -1,0 +1,45 @@
+global:
+  projectId: "testProject"
+
+replicaCount: 1
+
+image:
+  repository: google/cloud-sdk
+  pullPolicy: IfNotPresent
+  tag: "alpine"
+
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  name: "test"
+
+podAnnotations: {}
+
+resources: 
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+env:
+  create: true
+  envs: []
+
+args:
+  create: true
+  script: 
+    - /bin/sh
+    - c
+    - >
+      i=0;
+      while true;
+        do
+          touch $(date +%m-%d-%Y)-$1;
+          gsutil cp $(date +%m-%d-%Y)-$1 gs://$BUCKET_NAME;
+          i=$((i+1));
+          sleep 60;
+        done

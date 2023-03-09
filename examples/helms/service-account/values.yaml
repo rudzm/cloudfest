@@ -1,0 +1,10 @@
+global:
+  projectId: testProject
+  namespace: default
+serviceAccount:
+  create: true
+  annotations: {}
+  name: test
+  roles: 
+    - role/2
+
