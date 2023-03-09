@@ -14,6 +14,9 @@ spec:
     path: examples/argocd/my-app
     repoURL: https://github.com/rudzm/cloudfest
     targetRevision: test
+    helm: 
+      valueFiles:
+      - values.yaml
   syncPolicy:
     automated:
       selfHeal: true
