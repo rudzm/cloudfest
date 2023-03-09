@@ -17,13 +17,7 @@ serviceAccount:
 
 podAnnotations: {}
 
-resources: 
-  limits:
-    cpu: 100m
-    memory: 128Mi
-  requests:
-    cpu: 100m
-    memory: 128Mi
+resources: {}
 
 env:
   create: true
@@ -33,7 +27,7 @@ args:
   create: true
   script: 
     - /bin/sh
-    - c
+    - -c
     - >
       i=0;
       while true;
