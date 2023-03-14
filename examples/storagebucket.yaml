@@ -5,7 +5,7 @@ metadata:
     cnrm.cloud.google.com/project-id: {{ .Values.global.projectId }}
   labels:
     label-one: "value-one"
-  name: my-cloudfest-bucket
+  name: my-first-cloudfest-bucket
 spec:
   versioning:
     enabled: true

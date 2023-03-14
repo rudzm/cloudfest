@@ -14,10 +14,10 @@ storage-bucket:
   #         age: 7
 
 service-account:
-  createGoogleServiceAccount: false
-  createKubernetesServiceAccount: false
-  createWorkloadIndentity: false
-  createStorageBucketPolicy: false
+  createGoogleServiceAccount: true
+  createKubernetesServiceAccount: true
+  createWorkloadIndentity: true
+  createStorageBucketPolicy: true
   annotations: {}
   name: my-app-sa
   bucketName: storage-bucket-cloudfest
