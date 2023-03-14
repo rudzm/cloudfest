@@ -23,9 +23,9 @@ version: 0.1.0
 appVersion: "1.0"
 
 dependencies:
-# - name: service-account
-#   repository: oci://registry-1.docker.io/rudzmic1
-#   version: 0.1.0
+- name: service-account
+  repository: oci://registry-1.docker.io/rudzmic1
+  version: 0.1.0
 - name: storage-bucket
   repository: oci://registry-1.docker.io/rudzmic1
   version: 0.1.0
