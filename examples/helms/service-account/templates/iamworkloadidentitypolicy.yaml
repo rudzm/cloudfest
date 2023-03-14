@@ -14,5 +14,5 @@ spec:
   bindings:
     - role: roles/iam.workloadIdentityUser
       members:
-        - serviceAccount:{{ .Values.global.projectId }}.svc.id.goog[{{ .Values.global.namespace }}/{{ .Values.global.projectId }}]
+        - serviceAccount:{{ .Values.global.projectId }}.svc.id.goog[{{ .Values.global.namespace }}/{{ .Values.name }}]
 {{- end }}
