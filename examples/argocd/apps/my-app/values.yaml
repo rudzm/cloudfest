@@ -2,6 +2,39 @@ global:
   namespace: default
   projectId: starlit-oven-379913
 
+master-app:
+  replicaCount: 1
+
+  image:
+    repository: google/cloud-sdk
+    pullPolicy: IfNotPresent
+    tag: "alpine"
+
+  name: my-app
+  nameOverride: ""
+  fullnameOverride: ""
+
+  podAnnotations: {}
+
+  resources: {}
+
+  serviceAccountName: my-app-sa
+
+  env: 
+    - name: BUCKET_NAME
+      value: storage-bucket-cloudfest
+  args:
+    script: 
+      - /bin/sh
+      - -c
+      - >
+        while true;
+          do
+            touch $(date +%m-%d-%Y-%M);
+            gsutil cp $(date +%m-%d-%Y-%M) gs://$BUCKET_NAME;
+            sleep 90;
+          done
+
 storage-bucket:
   name: storage-bucket-cloudfest
   versioning:
