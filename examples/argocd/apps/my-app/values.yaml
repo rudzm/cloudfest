@@ -19,5 +19,5 @@ service-account:
   createWorkloadIndentity: true
   createStorageBucketPolicy: true
   annotations: {}
-  name: my-app-sa
+  name: bucket-access-sa
   bucketName: storage-bucket-cloudfest
