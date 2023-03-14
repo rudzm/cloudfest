@@ -18,7 +18,7 @@ master-app:
 
   resources: {}
 
-  serviceAccountName: my-app-sa
+  serviceAccountName: bucket-access-sa
 
   env: 
     - name: BUCKET_NAME
