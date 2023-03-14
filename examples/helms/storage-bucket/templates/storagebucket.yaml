@@ -1,0 +1,18 @@
+apiVersion: storage.cnrm.cloud.google.com/v1beta1
+kind: StorageBucket
+metadata:
+  annotations:
+    cnrm.cloud.google.com/project-id: {{ .Values.global.projectId }}
+  labels:
+    label-one: "value-one"
+  name: {{ .Values.name }}
+  namespace: {{ .Values.global.namespace }}
+spec:
+  versioning:
+    enabled: {{ .Values.versioning.enabled }}
+    {{- if .Values.lifecycleRuleCreate -}}
+    {{- with .Values.lifecycleRule }}
+    lifecycleRule:
+      {{- toYaml . | nindent 8}}
+    {{- end }}
+    {{- end -}}

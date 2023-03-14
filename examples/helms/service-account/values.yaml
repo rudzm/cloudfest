@@ -1,9 +1,11 @@
 global:
-  projectId: testProject
+  projectId: starlit-oven-379913
   namespace: default
-create: true
+createGoogleServiceAccount: true
+createKubernetesServiceAccount: true
+createWorkloadIndentity: true
+createStorageBucketPolicy: true
 annotations: {}
-name: test
-roles: 
-    - role/2
+name: my-app-sa
+bucketName: storage-bucket-cloudfest
 

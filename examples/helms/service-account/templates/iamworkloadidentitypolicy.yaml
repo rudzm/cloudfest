@@ -1,18 +1,18 @@
+{{- if .Values.createWorkloadIndentity -}}
 apiVersion: iam.cnrm.cloud.google.com/v1beta1
 kind: IAMPolicy
 metadata:
+  annotations:
+    cnrm.cloud.google.com/project-id: {{ .Values.global.projectId }}
   name: iampolicy-workload-identity-sample
+  namespace: {{ .Values.global.namespace }}
 spec:
   resourceRef:
-    apiVersion: iam.cnrm.cloud.google.com/v1beta1
     kind: IAMServiceAccount
     name: {{ .Values.name }}
+    namespace: {{ .Values.global.namespace }}
   bindings:
     - role: roles/iam.workloadIdentityUser
       members:
         - serviceAccount:{{ .Values.global.projectId }}.svc.id.goog[{{ .Values.global.namespace }}/{{ .Values.global.projectId }}]
-    {{- range $.Values.roles }}
-    - role: {{ . }}
-      members:
-        - serviceAccount:{{ $.Values.global.projectId }}.svc.id.goog[{{ $.Values.global.namespace }}/{{ $.Values.global.projectId }}]
-    {{- end }}
+{{- end }}

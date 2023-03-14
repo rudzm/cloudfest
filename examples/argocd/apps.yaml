@@ -11,7 +11,7 @@ spec:
     namespace: default
   project: default
   source:
-    path: examples/argocd/my-app
+    path: examples/argocd/apps/my-app
     repoURL: https://github.com/rudzm/cloudfest
     targetRevision: test
     helm: 

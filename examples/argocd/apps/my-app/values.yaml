@@ -1,0 +1,23 @@
+global:
+  namespace: default
+  projectId: starlit-oven-379913
+
+storage-bucket:
+  name: storage-bucket-cloudfest
+  versioning:
+    enabled: false
+  # lifecycleRuleCreate: false
+  # lifecycleRule:
+  #     - action:
+  #         type: Delete
+  #       condition:
+  #         age: 7
+
+service-account:
+  createGoogleServiceAccount: false
+  createKubernetesServiceAccount: false
+  createWorkloadIndentity: false
+  createStorageBucketPolicy: false
+  annotations: {}
+  name: my-app-sa
+  bucketName: storage-bucket-cloudfest
