@@ -13,7 +13,6 @@ spec:
   source:
     path: examples/argocd/apps/my-app
     repoURL: https://github.com/rudzm/cloudfest
-    targetRevision: test
     helm: 
       valueFiles:
       - values.yaml
