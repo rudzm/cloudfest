@@ -4,6 +4,7 @@ metadata:
   name: {{ include "appChart.fullname" . }}
   labels:
     {{- include "appChart.labels" . | nindent 4 }}
+  namespace: {{ .Values.global.namespace }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
@@ -18,16 +19,18 @@ spec:
       labels:
         {{- include "appChart.selectorLabels" . | nindent 8 }}
     spec:
-      serviceAccountName: {{ include "appChart.serviceAccountName" . }}
+      serviceAccountName: {{ .Values.serviceAccountName }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-          {{- if .Values.args.create }}
-            {{- with .Values.args.script }}
+          {{- with .Values.args.script }}
           args:
             {{- toYaml . | nindent 12 }}
-            {{- end}}
-          {{- end }}
+          {{- end}}
+          {{- with .Values.env }}
+          env:
+            {{- toYaml . | nindent 12}}  
+          {{- end -}}

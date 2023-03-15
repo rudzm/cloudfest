@@ -1,0 +1,18 @@
+{{- if .Values.createStorageBucketPolicy -}}
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPolicy
+metadata:
+  annotations:
+    cnrm.cloud.google.com/project-id: {{ .Values.global.projectId }}
+  name: iampolicy-storage-bucket
+  namespace: {{ .Values.global.namespace }}
+spec:
+  resourceRef:
+    kind: StorageBucket
+    name: {{ .Values.bucketName }}
+    namespace: {{ .Values.global.namespace }}
+  bindings:
+    - role: roles/storage.admin
+      members:
+        - serviceAccount:{{ .Values.name }}@{{ .Values.global.projectId }}.iam.gserviceaccount.com
+{{- end }}

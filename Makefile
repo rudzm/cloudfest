@@ -6,21 +6,17 @@ create-cluster:
 		--cluster-version "1.24.9-gke.3200" \
 		--release-channel "None" \
 		--machine-type "e2-medium" \
-		--image-type "COS_CONTAINERD" \
 		--disk-type "pd-balanced" \
 		--disk-size "100" \
 		--metadata disable-legacy-endpoints=true \
-		--scopes "https://www.googleapis.com/auth/devstorage.read_only","https://www.googleapis.com/auth/logging.write","https://www.googleapis.com/auth/monitoring","https://www.googleapis.com/auth/servicecontrol","https://www.googleapis.com/auth/service.management.readonly","https://www.googleapis.com/auth/trace.append" \
-		--num-nodes "1" \
-		--logging=SYSTEM,WORKLOAD \
-		--monitoring=SYSTEM \
+		--num-nodes "3" \
 		--enable-ip-alias \
 		--network "projects/$(project_id)/global/networks/default" \
 		--subnetwork "projects/$(project_id)/regions/us-central1/subnetworks/default" \
 		--no-enable-intra-node-visibility \
 		--default-max-pods-per-node "110" \
 		--no-enable-master-authorized-networks \
-		--addons HorizontalPodAutoscaling,HttpLoadBalancing,GcePersistentDiskCsiDriver,ConfigConnector \
+		--addons ConfigConnector \
 		--enable-autoupgrade \
 		--enable-autorepair \
 		--max-surge-upgrade 1 \
@@ -28,10 +24,10 @@ create-cluster:
 		--workload-pool "$(project_id).svc.id.goog" \
 		--enable-shielded-nodes \
 		--node-locations "us-central1-c" \
-		--zone us-central1-c
+		--region us-central1
 
 get-credentials:
-	gcloud container clusters get-credentials cloudfest --zone us-central1-c --project $(project_id)
+	gcloud container clusters get-credentials cloudfest --region us-central1 --project $(project_id)
 
 configure-sa:
 	gcloud iam service-accounts create config-connector-sa
