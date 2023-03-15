@@ -48,7 +48,7 @@ storage-bucket:
 
 service-account:
   createGoogleServiceAccount: true
-  createKubernetesServiceAccount: true
+  createKubernetesServiceAccount: false
   createWorkloadIndentity: true
   createStorageBucketPolicy: true
   annotations: {}
